@@ -177,7 +177,7 @@ ParseCurriculoEmpregosUnicoCargo <- function(curriculo_nome, curriculo_empresa) 
 }
 
 # EMPREGOS
-ParseCurriculoEmpegosVariosCargos <- function(curriculo_nome, curriculo_empresa) {
+ParseCurriculoEmpregosVariosCargos <- function(curriculo_nome, curriculo_empresa) {
   # MÚLTIPLOS CARGOS
   curriculo_empresa_cargos <- curriculo_empresa %>% html_nodes(css = ".pv-entity__position-group-role-item")
   if (length(curriculo_empresa_cargos) == 0) {
