@@ -3,12 +3,13 @@ ConsultaCursosConcluidos <- function(evadidos, siglaCurso) {
   # CONSULTA - TODOS OS CURSOS FEITOS PELO ALUNOS EVADIDOS
   # ==============================================================================
   cursosConcluidos <- estudos %>%
-    select(Nome, Curso) %>%
+    inner_join(evadidos, by = "Nome") %>%
+    select(Nome, Curso, AnoEgresso, AnoEvasao) %>%
     na.omit(cursosConcluidos) %>%
     group_by(Nome) %>%
-    filter(Nome %in% c(evadidos$Nome)) %>%
     distinct(Curso, .keep_all = TRUE) %>%
-    filter(Curso != siglaCurso) %>%
+    filter(AnoEgresso <= AnoEvasao) %>% 
+    filter(Curso != siglaCurso) %>% 
     mutate(
       Curso = str_squish(Curso)
     ) %>%
