@@ -104,7 +104,7 @@ ui <- dashboardPage(
         ),
         # GRÁFICOS
         fluidRow(
-          box(title = "Todos os cursos concluídos pelos alunos evadidos", status = "primary", solidHeader = T, plotlyOutput("cursosConcluidos"), width = 6, collapsible = TRUE),
+          box(title = "Todos os cursos concluídos antes da evasão", status = "primary", solidHeader = T, plotlyOutput("cursosConcluidos"), width = 6, collapsible = TRUE),
           box(title = "Ano de evasão do curso", status = "primary", solidHeader = T, plotlyOutput("anoDeEvasao"), width = 6, collapsible = TRUE),
           box(title = "Prosseguiu nos estudos após a evasão", status = "primary", solidHeader = T, plotlyOutput("prosseguiuEstudosAposEvasao"), width = 6, collapsible = TRUE),
           box(title = "Áreas dos cursos concluídos após a evasão", status = "primary", solidHeader = T, plotlyOutput("areasCursosAposEvasao"), width = 6, collapsible = TRUE),
@@ -182,7 +182,7 @@ server <- function(input, output) {
     )
   })
 
-  # Todos os cursos concluídos pelos estudantes evadidos
+  # Todos os cursos concluídos pelos estudantes evadidos antes da evasão
   output$cursosConcluidos <- renderPlotly({
     dataframe <- ConsultaCursosConcluidos(evadidos(), siglaCurso())
     GraficoCursosConcluidos(dataframe)
