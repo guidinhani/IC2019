@@ -235,6 +235,7 @@ empregos <- read.csv(file = "EmpregosEvadidos.csv", header = TRUE) %>%
     Empresa = str_replace_all(Empresa, ".*UNIITALO.*", "UNIITALO"),
     # V
     Empresa = str_replace_all(Empresa, ".*VENKO MOTORS.*", "VENKO MOTORS"),
+    Empresa = case_when(str_detect(Empresa, "IFSP NA") ~ "IFSP", TRUE ~ Empresa),
 
     # ==============================================================================
     # CARGOS
